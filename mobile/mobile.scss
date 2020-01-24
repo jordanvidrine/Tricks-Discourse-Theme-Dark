@@ -1,0 +1,236 @@
+@import "common/foundation/variables";
+
+
+// ---------DEFINITIONS--------- //
+$ctrx-orange: #ff8a00;
+$ctrx-pink: #e52e71;
+$ctrx-bg: #201c29;
+
+@mixin ctrx-gradient($direction: to top, $from: $ctrx-orange, $to: $ctrx-pink, $val: .5) {
+  background-image: linear-gradient($direction, rgba($from,$val), rgba($to,$val))
+}
+// ---------------------------- //
+
+body {
+  background-color: $secondary;
+}
+
+#main {
+  padding-top: 120px;
+}
+
+#main-outlet {
+  width: 100%;
+  padding: 0;
+  margin: 0px;
+  border-radius: 0;
+  box-shadow: none;
+
+  .list-controls {
+    padding: 0 10px 0 10px;
+  }
+}
+
+// ---------HEADER------------- //
+header.d-header, d.header {
+  box-shadow: none;
+}
+
+#reply-control {
+  border-radius: 0px;
+}
+
+.topic-list th, .topic-list td {
+  padding: 7px 5px;
+}
+
+.search-container {
+  padding: 10px;
+}
+
+// hamburger slideout
+.menu-panel.slide-in {
+  top: 120px !important; // overwrite insline style
+}
+
+// background opacity on slideout
+.header-cloak {
+  top: 120px !important;
+  @if ($secondary = "292929") {
+    opacity: .9 !important;
+    background-color: rgba($secondary,1);
+    @include ctrx-gradient(to top, $ctrx-orange, $ctrx-pink,.15);
+  } @else {
+    background-color: rgba($primary,.95);
+    @include ctrx-gradient;
+  }
+}
+
+a.icon {
+  .header-dropdown-toggle.active & {
+    border-radius: 4px;
+  }
+}
+
+// Stops the removal of icons in header once scrolled up
+.d-header .extra-info-wrapper + .panel .header-buttons, .d-header .extra-info-wrapper + .panel .d-header-icons {
+  display: inline !important;
+}
+.d-header .panel {
+  animation: none;
+}
+.extra-info-wrapper {
+  display: none;
+}
+
+// ---------------------------- //
+
+// Topic Title spacing
+#topic-title {
+  padding: 15px 10px;
+}
+
+// ---------MISC------------- //
+
+// Better Mobile Spacing
+
+.container.viewing-self,
+.container.read-guidlines,
+.container.show-badge,
+.container.badges,
+.footer-message,
+.container.cakeday,
+.tag-list, #topic-footer-buttons {
+  padding: 15px 10px;
+}
+
+.user-info-empty-message {
+  padding: 30px 0;
+}
+
+.about {
+  padding: 0 10px;
+}
+
+.groups-header {
+  padding: 10px 0 0 10px;
+}
+
+// padding inside of topic
+.topic-post .row {
+  padding: 0 10px;
+
+  nav.post-controls .actions {
+    align-items: center;
+    svg.d-icon {
+      color: $primary-medium !important;
+    }
+  }
+
+  .regular.contents {
+    padding: 10px 5px;
+  }
+}
+
+// '5 Months Later...' spacing
+.small-action-desc.timegap {
+  padding: 10px;
+}
+
+// Gradient on nav links
+.body-page .nav-pills, .cakeday .nav-pills {
+  padding: 15px 10px;
+  li a {
+    &.active {
+      background-color: white;
+      @include ctrx-gradient(to left);
+      color: $primary;
+    }
+  }
+}
+
+// FAQ + About Page padding
+div[itemprop="mainContentOfPage"] {
+  padding: 0 10px;
+}
+
+// Highlighted User BG
+.user.me {
+  background-color: white;
+  @include ctrx-gradient(to bottom right, $ctrx-orange, $ctrx-pink, .15);
+  div.user-stat span {
+    color: $primary-high !important;
+  }
+}
+
+// Category List Styling
+.category-list-item {
+  margin-bottom: 0;
+  border-top: none !important;
+  border-bottom: 1px solid $primary-high !important;
+}
+
+// Mobile Image in topic/reply sizing
+.lightbox-wrapper img {
+  width: 100%;
+}
+
+// Progress Widget Styling
+#topic-progress-wrapper:not(.docked) {
+  margin: 0 0 5vw 0;
+  right: 5vw !important;
+  #topic-progress {
+    margin: 2px 0 0 0;
+    width: 125px;
+    height: 30px;
+    color: rgba(black,.5);
+    border: 1px solid rgba($love,.15);
+    .nums {
+      top: 6px;
+    }
+    background-color: white;
+    .bg {
+      background-color: white;
+      @include ctrx-gradient(to right, $quaternary,$love , .2);
+      border-right: 1px solid rgba($love,.15);
+    }
+  }
+}
+
+#topic-progress-wrapper.docked {
+  right: 5vw !important;
+  #topic-progress {
+    width: 125px;
+    height: 30px;
+    color: rgba(black,.5);
+    border: 1px solid rgba($love,.15);
+    .nums {
+      top: 6px;
+    }
+    .bg {
+      background-color: white;
+      @include ctrx-gradient(to right, $quaternary,$love , .2);
+    }
+  }
+}
+
+.progress-back-container {
+  width: 125px;
+  .btn.progress-back {
+    border-radius: 0px;
+    background-color: $primary-low-mid;
+    border: none;
+  }
+}
+
+// Admin Styling
+.admin-content {
+  margin-bottom: 50px;
+  padding: 10px;
+}
+  // Admin Charts
+.dashboard .charts .chart-canvas,
+.dashboard-next .charts .chart-canvas {
+  width: 100% !important;
+  height: 100% !important;
+}

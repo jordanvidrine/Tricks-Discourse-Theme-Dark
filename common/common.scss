@@ -1,0 +1,921 @@
+// Some Styles inherited from Graceful Theme by awesomerobot https://meta.discourse.org/u/awesomerobot/
+
+@import "common/foundation/variables";
+@import url('https://fonts.googleapis.com/css?family=Rubik:300,400,500,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Varela+Round&display=swap');
+
+
+// ---------DEFINITIONS--------- //
+@mixin box-shadow($value: 8px) {
+  box-shadow: 0 1px $value rgba(black, 0.18);
+}
+
+$ctrx-orange: #ff8a00;
+$ctrx-pink: #e52e71;
+$ctrx-bg: #201c29;
+
+@mixin ctrx-gradient($from: $ctrx-orange, $to: $ctrx-pink, $val: 1) {
+  background-image: linear-gradient(to right, rgba($from,$val), rgba($to,$val))
+}
+// ---------------------------- //
+
+body {
+  background-color: $ctrx-bg;
+}
+
+#main {
+  padding-top: 150px;
+  padding-bottom: 120px;
+}
+
+#main-outlet {
+  background: rgba($secondary, 0.99);
+  border-radius: 8px; 
+  width: 100%;
+  padding: 3em 3em 5%;
+
+  .archetype-regular & {
+    min-height: 500px;
+  }
+
+  @media screen and (max-width: 775px) {
+    padding: 1.5em;
+  }
+
+  padding-bottom: 5% !important; //overriding inline style
+  @include box-shadow;
+
+  @media screen and (max-width: 1120px) {
+    width: 80%;
+  }
+
+  @media screen and (max-width: 1075px) {
+    width: 85%;
+  }
+
+}
+
+// -------BRANDED HEADER------ //
+.branded-header {
+  width: 100%;
+  height: 50px;
+  position:fixed;
+  z-index: 1001;
+  top: 0;
+  background-color: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  
+  .branded-wrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+
+    @media screen and (max-width: 1120px) {
+      width: 80%;
+    }
+
+    @media screen and (max-width: 900px) {
+      width: 85%;
+      ul.branded-links li a {
+        font-size: 10px;
+      }
+    }
+
+    @media screen and (max-width: 750px) {
+      width: auto;
+      height: auto;
+      justify-content: center;
+      align-items: center;
+      ul.branded-links li {
+        display: none;
+      }
+    }
+
+    ul.branded-links {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      list-style-type: none;
+      margin: 0;
+      &:hover {
+        .article a { 
+          color: $quaternary;
+          transition: all .1s ease-in-out;
+        }
+        .video a { 
+          color: $love;
+          transition: all .2s ease-in-out;
+        }
+        .almanac a { 
+          color: $danger;
+          transition: all .3s ease-in-out;
+        }
+        .snippet a { 
+          color: $highlight;
+          transition: all .4s ease-in-out;
+        }
+        .newsletter a { 
+          color: $tertiary;
+          transition: all .5s ease-in-out;
+        }
+        .job a { 
+          color: $success-medium;
+          transition: all .6s ease-in-out;
+        }
+        .guide a { 
+          color: $success;
+          transition: all .7s ease-in-out;
+        }
+      }
+      li:hover {
+        background-color: rgba($secondary,.15);
+        padding: 14px;
+      }
+      li:nth-child(1){
+        padding: 14px;
+      }
+      li:nth-child(n+2) {
+        border-left: 1px solid $primary-high;
+        padding: 14px;
+      }
+    }
+  
+    a {
+      transition: all .15s ease-in-out;
+      color: rgba(255,255,255,0.5);
+      font-family: 'Rubik', sans-serif;
+      font-weight: 100;
+      font-size: 14px;
+    }
+  
+    .logo {
+      font-family: 'Varela Round', sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      color: whitesmoke;
+      margin: 0;
+      svg {
+        color: $ctrx-orange;
+        transition: all .5s ease-in-out;
+      }
+      &:hover {
+        transform: scale(1.1)
+      }
+    }
+  }
+
+}
+// ---------------------------- //
+
+// ---------HEADER------------- //
+
+header.d-header {
+  @if ($secondary = "292929") {
+    background-color: black !important;
+    @include ctrx-gradient($ctrx-orange, $ctrx-pink,.90)
+  } @else {
+    @include ctrx-gradient;
+  }
+  top: 0px;
+  padding-top: 50px;
+  padding-bottom: 5px;
+  height: 65px;
+  @include box-shadow;
+  .contents {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.d-header-icons .d-icon {
+  color: $secondary;
+}
+
+.avatar {
+  border-radius: 50% !important;
+  border: 2px solid transparent;
+  transition: all .15s ease-in;
+}
+
+.d-header-icons .icon:hover {
+  background-color: rgba($secondary,0.35);
+  border-radius: 4px;
+  .d-icon {
+    color: $secondary;
+  }
+}
+// ---------------------------- //
+
+// ---------MENU PANEL--------- //
+.menu-panel {
+
+  &.drop-down {
+    background-color: $secondary;
+    border: none !important;
+    border-radius: 4px;
+
+    a {
+      color: $primary;
+      &:hover {
+        background-image: linear-gradient(90deg, rgba($ctrx-orange,.10), rgba($ctrx-pink,.10)) !important;
+        background-color: transparent !important;
+      }
+    }
+
+    .badge-notification {
+      background-color: rgba($quaternary,.25);
+    }
+  }
+}
+
+// Icons in User menu
+.menu-links-header .menu-links-row {
+  .d-icon {
+    color: $primary;
+  }
+}
+
+// Icons in User menu (below menu header)
+.user-menu .quick-access-panel,
+.quick-access-panel:hover {
+
+  li:hover {
+    background-image: linear-gradient(90deg, rgba($ctrx-orange,.10), rgba($ctrx-pink,.10)) !important;
+    background-color: transparent !important;
+  }
+
+  li:not(.read) {
+    background-image: linear-gradient(90deg, rgba($ctrx-orange,.25), rgba($ctrx-pink,.25)) !important;
+    background-color: transparent !important;
+  }
+
+  li .d-icon {
+    color: $primary !important;
+  }
+
+}
+
+a.icon {
+  
+  // When a.icon is a child of..
+  .header-dropdown-toggle.active & {
+    background-color: $secondary !important;
+    color: $love !important;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    z-index: 1001;
+  }
+
+}
+
+.d-icon {
+  
+  // Colors the SVG icons $love when it is active
+  .header-dropdown-toggle.active #toggle-hamburger-menu & {
+    color: $love;
+  }
+
+  .header-dropdown-toggle.active & {
+    color: $love !important;
+  }
+}
+
+// Eliminating a small 1px white line to appear under the icons
+.drop-down-mode .d-header-icons .active .icon::after {
+  border-top: none;
+}
+// ---------------------------- //
+
+
+// ----------BUTTONS---------- //
+.btn,
+.select-kit.dropdown-select-box .dropdown-select-box-header {
+  border: 1px solid $primary-low;
+  color: $primary-high;
+  background: transparent;
+  border-radius: 4px;
+
+  &:hover {
+    background: $tertiary-low;
+    color: $tertiary;
+  }
+}
+
+#create-topic.btn {
+  &:hover {
+    background: $primary-low;
+    color: $primary;
+    .d-icon {
+      color: $primary !important;
+    }
+  }
+}
+
+.btn-danger {
+  background: $danger;
+  color: $secondary;
+  &:hover {
+    background: darken($danger, 10%);
+    color: $secondary;
+  }
+}
+
+.btn-primary {
+  background: $tertiary;
+  color: $secondary;
+  border-color: $tertiary;
+}
+// ---------------------------- //
+
+// -------REPLY + EDITOR------ //
+#reply-control {
+  border-radius: 10px 10px 0 0;
+  .select-kit.dropdown-select-box .dropdown-select-box-header {
+    .d-icon {
+      color: $primary-medium;
+    }
+    &:hover {
+      background: $primary-medium;
+      border-radius: 0;
+    }
+  }
+  .d-editor-button-bar {
+    .select-kit.dropdown-select-box .dropdown-select-box-header {
+      border: none;
+    }
+  }
+
+  &.draft, &.saving {
+    background-color: $tertiary;
+    @include box-shadow(25)
+  }
+
+  // + create topic / save button
+  .save-or-cancel .create {
+    background-color: $primary-low;
+    border: 1px solid transparent;
+    color: $primary;
+    svg {
+      color: $primary;
+    }
+    &:hover {
+      background-color: $primary-medium;
+      color: $secondary;
+    }
+    &:active {
+      background-color: $primary-medium !important;
+      color: $secondary !important;
+    }
+  }
+}
+
+// Top of Create New Topic / Reply
+.open .grippie {
+  background: transparent;
+  &:before {
+    border-color: $primary-low;
+  }
+}
+
+// Editing Styles
+.d-editor-button-bar .btn {
+  border: none;
+  color: $tertiary;
+  .d-icon {
+    color: $tertiary;
+  }
+  &:hover {
+    background: $tertiary-low;
+    .d-icon {
+      color: $tertiary;
+    }
+  }
+}
+
+.badge-wrapper.box {
+  padding: 2px 6px 2px 5px;
+  span {
+    border-radius: 4px;
+  }
+}
+
+.deleted .topic-body {
+  background-color: rgba($danger, 0.2);
+}
+
+// Main category nav
+.list-controls .combo-box .combo-box-header {
+  background: transparent;
+  @media screen and (min-width: 775px) {
+    font-size: 1.1487em;
+  }
+  border-color: transparent;
+}
+
+.select-kit.combo-box.category-drop .category-drop-header,
+.select-kit.combo-box.tag-drop .tag-drop-header {
+  border-radius: 4px;
+}
+
+#list-area {
+  margin-bottom: 0;
+}
+
+#topic-title {
+  padding-top: 0;
+}
+
+.topic-map .btn {
+  border-radius: 0;
+}
+
+.badge-card {
+  border-radius: 4px;
+}
+
+// Horizontal topic timeline
+
+#topic-progress-wrapper {
+  right: 10vw !important;
+}
+
+#topic-progress-wrapper .topic-admin-menu-button-container .toggle-admin-menu {
+  background: $secondary;
+  border-radius: 4px 0 0 4px;
+}
+
+#bulk-select {
+  background: transparent;
+  button {
+    background: $secondary;
+    @include box-shadow(2px);
+    &:hover {
+      background: $tertiary-low;
+    }
+  }
+}
+
+// User Card
+.card-content {
+  border-radius: 5px;
+  color: $primary !important;
+  img.avatar {
+    border: 2px solid $ctrx-orange;
+    background: white;
+  }
+  h3 {
+    .desc {
+      color: $tertiary !important;
+    }
+  }
+}
+
+.badge-group {
+  background: $tertiary-low;
+}
+
+.input-prepend.input-append input,
+.input-prepend.input-append select {
+  background: $tertiary-low;
+}
+
+.modal .modal-body {
+  label .d-icon {
+    color: $tertiary;
+  }
+}
+
+// ----------MISC--------- //
+
+// Incrase width of 'Posters' section, increase avatar size
+.topic-list .posters {
+  width: auto;
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  & img.avatar {
+    border-radius: 50% !important;
+    // filter: grayscale(90%);
+    transform: scale(1.3);
+    margin-right: 7px;
+  }
+}
+
+// Visited Posts
+.topic-list-item.visited,
+.latest-topic-list-item.visited,
+.category-topic-link.visited {
+  a.title:not(.badge-notification) {
+    color: rgba($primary,.75);
+  }
+}
+
+// Icons
+#main-outlet .d-icon {
+  color: $primary;
+}
+
+// Active Category
+.nav-pills > li.active > a.active {
+  color: $primary;
+  background-color: transparent;
+  background-image: linear-gradient(90deg, rgba($ctrx-orange,.25), rgba($ctrx-pink,.25)) !important;
+  border-radius: 4px;
+}
+
+// Category :hover
+.nav-pills > li > a {
+  border-radius: 4px;
+  &:hover {
+    color: $primary;
+    background-color: transparent;
+    background-image: linear-gradient(90deg, rgba($ctrx-orange,.10), rgba($ctrx-pink,.10)) !important;
+  }
+}
+
+// Selected drop down for TOP category/tags is focused
+.select-kit.combo-box .select-kit-header.is-focused {
+  border: 1px solid $quaternary;
+  box-shadow: 0 0 6px 0 $quaternary;
+}
+
+// Selected drop down for tags in post creator is focused
+.select-kit.combo-box.mini-tag-chooser.is-expanded 
+.select-kit-header  {
+  border: 1px solid $quaternary;
+}
+
+// Button Hover
+.discourse-no-touch .btn:hover,
+.discourse-no-touch .btn.btn-hover {
+  background: $quaternary;
+  color: white;
+  border: 1px solid transparent;
+  .d-icon {
+    color: white !important;
+  }
+}
+
+// Table headers
+table th.sortable {
+  color: $primary;
+  &:hover {
+  background-color: $primary-low !important;
+  color: $primary !important;
+  }
+  transition: all .15s ease-in-out;
+}
+
+.sortable:hover {
+  .d-icon {
+    color: $primary !important;
+  }
+}
+
+// Style Guide page
+.styleguide .styleguide-menu ul li.styleguide-heading {
+  color: $primary !important;
+  font-weight: bold;
+}
+
+
+// Syntax Highlighting & Coloring
+pre[data-lang]::before { content: attr(data-lang); display: block; }
+
+pre {
+  background-color: #001628 !important;
+  border-radius: 8px;
+  padding: 15px;
+  color: $secondary-high;
+}
+
+// Title of Post once scrolled up
+.extra-info-wrapper {
+  .topic-link,
+  .categories-wrapper .category-name {
+    font-weight: bold;
+    color: $secondary;
+    @if ($secondary = "292929") {
+      text-shadow: none;
+    } @else {
+      text-shadow: 0 1px 8px rgba(black, 0.15);
+    }
+  }
+  .topic-header-extra .discourse-tags .discourse-tag {
+    font-weight: lighter;
+    color: white !important;
+  }
+}
+
+// Title categories & tags styling
+.extra-info-wrapper {
+  .categories-wrapper {
+    background-color: rgba($secondary, 0.35);
+    padding: 3px 5px 2px 10px;
+    border-radius: 10px;
+  }
+
+  .title-wrapper .header-title .d-icon {
+    color: $secondary;
+  }
+
+  .topic-header-extra .discourse-tags {
+    background-color: rgba($secondary, 0.2);
+    margin-left: 5px;
+    border-radius: 10px;
+    padding: 2px 10px 2px 10px;
+    .discourse-tag.simple {
+      margin-right: 0 5px;
+    }
+  }
+}
+
+// Input Styling
+#search-term[type="text"] {
+  border: 1px solid $love !important;
+  &:focus {
+    box-shadow: 0 0 6px 0 $love-low !important;
+  }
+}
+
+// Home Icon style
+.fa.d-icon.d-icon-home.svg-icon.svg-node {
+  color: white;
+}
+
+// Timeline margin updates
+.timeline-container {
+  top: 150px !important; // overwrite hardcoded style
+  &.timeline-docked {
+    top: 258px !important; // overwrite hardcoded style
+  }
+}
+
+// Editor Button Bar
+.d-editor-button-bar {
+  & .btn {
+    border-radius: 0 0 0 0;
+  }
+  & .btn:hover {
+    border: none;
+    background-color: $primary-medium;
+    // @include ctrx-gradient($quaternary,$love,.5);
+  }
+  .btn svg.d-icon, .btn svg.d-icon:hover {
+    color: $primary-medium;
+  }
+}
+
+// Highlights
+.composer-popup {
+  background-color: white;
+  @include ctrx-gradient($quaternary,$love,.2);
+  border-radius: 8px;
+}
+
+// Abandon Post danger button
+.modal-footer .btn {
+  &.btn-danger {
+    background-color: $danger-medium;
+    border: 1px solid transparent;
+    &:hover {
+      background-color: $danger;
+    }
+  }
+  &.btn-default:hover {
+    background-color: $primary-medium;
+  }
+}
+
+// POSTS
+
+// Highlight at top of post
+.moderator .regular > .cooked {
+  border-radius: 4px;
+  background-color: $secondary;
+  @include ctrx-gradient($quaternary,$love,.15);
+}
+
+// Inner padding of topic post creates space for enlraged avatars
+.topic-body .regular {
+  padding: 5px;
+}
+
+.fancy-title {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 700;
+  font-size: 35px;
+
+  @media screen and (max-width: 900px) {
+    font-size: 25px;
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: 22px;
+  }
+}
+
+// Topic Lists Titles
+.title.raw-link {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 400;
+  color: $primary;
+}
+
+tr.topic-list-item:nth-child(odd){
+  background-color: rgba($primary,.025);
+}
+
+// ADMIN PANEL
+.admin-customize .themes-list-header .tab.active {
+  color: $primary;
+  background-color: white;
+  @include ctrx-gradient($quaternary,$love,.25);
+}
+
+.admin-customize .themes-list-container .themes-list-item.selected {
+  color: $primary;
+  background-color: white;
+  background-image: linear-gradient(to left,rgba($quaternary,.25),rgba($love,.25));
+}
+
+.discourse-no-touch .btn:hover, .discourse-no-touch .btn.btn-hover {
+  background-color: $primary-medium;
+}
+
+.nav-stacked a.active {
+  background-color: $primary-medium;
+}
+
+.settings .setting.overridden h3 {
+  color: $primary;
+}
+
+.settings .setting.overridden.string input[type="text"],
+.settings .setting.overridden.string input[type="password"],
+.settings .setting.overridden.string textarea {
+  background-color: white;
+}
+
+
+
+
+// -------GRACEFUL STYLES-------- //
+// Admin (Graceful)
+.admin-controls {
+  background: $primary-low;
+  .controls {
+    background: $primary-low;
+  }
+  nav {
+    background: $primary-low;
+    &:before {
+      background: linear-gradient(
+        to right,
+        $primary-low 0%,
+        rgba(234, 236, 238, 0) 100%
+      );
+    }
+    &:after {
+      background: linear-gradient(
+        to right,
+        rgba(234, 236, 238, 0) 0%,
+        $primary-low 100%
+      );
+    }
+  }
+}
+
+// Babble (Graceful)
+.babble-sidebar {
+  height: calc(100% - 5.285em);
+}
+.babble-sidebar-collapsed {
+  border: none;
+  background: transparent;
+  button.widget-button {
+    background: $secondary;
+  }
+  .d-icon {
+    color: $primary;
+  }
+}
+
+// User Page Settings (Adapted from Graceful)
+.user-main {
+  .staff-counters {
+    background: $tertiary-low;
+    color: $tertiary;
+    a {
+      color: $tertiary;
+    }
+    span {
+      color: $secondary;
+    }
+  }
+
+  .nav-pills > li > a.active {
+    color: $primary;
+    background-color: transparent;
+    background-image: linear-gradient(90deg, rgba($ctrx-orange,.25), rgba($ctrx-pink,.25)) !important;
+    border-radius: 4px;
+    & .d-icon {
+      color: $quaternary !important;
+    }
+  }
+
+  // Icon styling on hover
+  .nav-pills > li > a:hover > .d-icon{
+    color: $quaternary !important;
+  }
+
+  .helpful-flags {
+    background-color: #2ecc40;
+  }
+  .flagged-posts {
+    background-color: #f012be;
+  }
+  .deleted-posts {
+    background-color: #ff851b;
+  }
+  .warnings-received {
+    background-color: #ff4136;
+  }
+}
+
+// User pages (Graceful)
+.about .primary .controls {
+  a.btn:hover {
+    background-color: $primary-low;
+    color: $primary;
+    .d-icon {
+      color: $primary !important;
+    }
+  }
+}
+
+.user-preferences .bio-composer .d-editor-preview,
+.group-form-bio .d-editor-preview,
+.edit-category-tab-topic-template .d-editor-preview {
+  background: $tertiary-low;
+}
+
+
+.nav-stacked {
+  background: $primary-low;
+  li {
+    border-color: $primary-low-mid;
+  }
+}
+
+.admin-detail {
+  border-color: $primary-low-mid;
+}
+
+.content-list ul li a:hover {
+  background: $primary-low;
+}
+
+span.user-title {
+  border: 1px solid #f1be18;
+  color: #f1be18 !important;
+  padding: 0 4px;
+  line-height: 1.2em;
+  font-size: 0.85em;
+  letter-spacing: 0.5px;
+  border-radius: 8px;
+}
+
+.uploaded-image-preview {
+  background: $primary-low;
+  border-radius: 4px;
+}
+
+// Select kit (Graceful)
+.select-kit.dropdown-select-box .dropdown-select-box-header {
+  &:hover {
+    .d-icon {
+      color: $tertiary;
+    }
+  }
+}
+
+.select-kit.dropdown-select-box.composer-actions .select-kit-header .d-icon {
+  border: none;
+}
+
+.select-kit.dropdown-select-box.toolbar-popup-menu-options .select-kit-row {
+  background: $tertiary-low;
+  &:hover,
+  &.is-highlighted {
+    background: $tertiary;
+  }
+}
